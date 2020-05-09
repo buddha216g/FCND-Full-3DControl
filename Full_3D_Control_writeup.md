@@ -41,8 +41,8 @@ To accomplish this, i:
 
 1. Implemented body rate control
 
- - implemented the function `GenerateMotorCommands()`  : lines 74 to 93 in QuadControl.cpp
- - implemented the function `BodyRateControl()` : 123 to 128 in QuadControl.cpp
+ - implemented the function `GenerateMotorCommands()`  : lines 74 to 93 in QuadControl.cpp (student code part)
+ - implemented the function `BodyRateControl()` : 123 to 128 in QuadControl.cpp (student code part)
  - Tuned `kpPQR` in `QuadControlParams.txt` : value set to [90,90, 6]  (vehicle stopped spinning quickly but not overshoot)
 
 If successful, you should see the rotation of the vehicle about roll (omega.x) get controlled to 0 while other rates remain zero.  Note that the vehicle will keep flying off quite quickly, since the angle is not yet being controlled back to 0.  Also note that some overshoot will happen due to motor dynamics!.
@@ -51,7 +51,7 @@ If successful, you should see the rotation of the vehicle about roll (omega.x) g
 2. Implement roll / pitch control
 We won't be worrying about yaw just yet.
 
- - implemented function `RollPitchControl()` : lines 157 to 174 in QuadControl.cpp
+ - implemented function `RollPitchControl()` : lines 157 to 174 in QuadControl.cpp (student code part)
  - Tuned `kpBank` in `QuadControlParams.txt` : value set to 10 (minimize settling time but avoid too much overshoot)
 
 If successful you should now see the quad level itself (as shown below), though it’ll still be flying away slowly since we’re not controlling velocity/position!  You should also see the vehicle angle (Roll) get controlled to 0.
@@ -65,22 +65,22 @@ see the output in the simulator below
 
 ### Position/velocity and yaw angle control (scenario 3) ###
 
-Next, you will implement the position, altitude and yaw control for your quad.  For the simulation, you will use `Scenario 3`.  This will create 2 identical quads, one offset from its target point (but initialized with yaw = 0) and second offset from target point but yaw = 45 degrees.
+Next, I implemented the position, altitude and yaw control for your quad.  For the simulation, you used `Scenario 3`.  This  created 2 identical quads, one offset from its target point (but initialized with yaw = 0) and second offset from target point but yaw = 45 degrees.
 
- - implement the code in the function `LateralPositionControl()`
- - implement the code in the function `AltitudeControl()`
- - tune parameters `kpPosZ` and `kpPosZ`
- - tune parameters `kpVelXY` and `kpVelZ`
+ - implemented the function `LateralPositionControl()` : lines 262 to 285 in QuadControl.cpp (student code part)
+ - implemented the function `AltitudeControl()`: lines 206 to 223 in QuadControl.cpp (student code part)
+ - tuned parameters `kpPosZ` and `kpPosZ` :  kpPosZ = 25 and KiPosZ = 40
+ - tuned parameters `kpVelXY` and `kpVelZ` : kpVelXY = 12.0 and kpVelZ = 9.0
 
 If successful, the quads should be going to their destination points and tracking error should be going down (as shown below). However, one quad remains rotated in yaw.
 
- - implement the code in the function `YawControl()`
- - tune parameters `kpYaw` and the 3rd (z) component of `kpPQR`
+ - implemented the function `YawControl()` : lines 307 to 321 in QuadControl.cpp (student code part)
+ - tuned parameters `kpYaw` and the 3rd (z) component of `kpPQR` : kpYaw = 2 and kpPQR = 90,90, 6
 
-Tune position control for settling time. Don’t try to tune yaw control too tightly, as yaw control requires a lot of control authority from a quadcopter and can really affect other degrees of freedom.  This is why you often see quadcopters with tilted motors, better yaw authority!
+Tips : Tune position control for settling time. Don’t try to tune yaw control too tightly, as yaw control requires a lot of control authority from a quadcopter and can really affect other degrees of freedom.  This is why you often see quadcopters with tilted motors, better yaw authority!
 
 <p align="center">
-<img src="animations/scenario3.gif" width="500"/>
+<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario3.png"/>
 </p>
 
 **Hint:**  For a second order system, such as the one for this quadcopter, the velocity gain (`kpVelXY` and `kpVelZ`) should be at least ~3-4 times greater than the respective position gain (`kpPosXY` and `kpPosZ`).
