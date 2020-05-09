@@ -6,14 +6,11 @@
 
 The goal of this project is to design and build a cascade PID controller, which will control the quadrotors to fly the desired trajectory in the 3D environment.
 
-For the project, the majority of your code will be written in `src/QuadControl.cpp`.  This file contains all of the code for the controller that you will be developing.
-
-All the configuration files for your controller and the vehicle are in the `config` directory.  For example, for all your control gains and other desired tuning parameters, there is a config file called `QuadControlParams.txt` set up for you.  An import note is that while the simulator is running, you can edit this file in real time and see the affects your changes have on the quad!
-
-
 
 ### Implemented Controller ###
+For the project, the majority of your code was  written in `src/QuadControl.cpp`.  This file contains all of the code for the controller that i developed.
 
+All the configuration files for the controller and the vehicle are in the `config` directory.
 
 
 ### Introduction (scenario 1) ### 
@@ -28,7 +25,9 @@ Therefore, if the mass doesn't match the actual mass of the quad, it'll fall dow
 
 I tuned the `Mass` parameter in `QuadControlParams.txt` to 0.49 so as to make the vehicle more or less stay in the same spot.
 
+see the output in the simulator below 
 
+https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario1.png
 
 
 
