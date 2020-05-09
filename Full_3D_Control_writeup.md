@@ -27,7 +27,9 @@ I tuned the `Mass` parameter in `QuadControlParams.txt` to 0.49 so as to make th
 
 see the output in the simulator below 
 
-https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario1.png
+<p align="center">
+<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario1.png" width="500"/>
+</p>
 
 
 
