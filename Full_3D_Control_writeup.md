@@ -25,7 +25,7 @@ Therefore, if the mass doesn't match the actual mass of the quad, it'll fall dow
 
 I tuned the `Mass` parameter in `QuadControlParams.txt` to 0.49 so as to make the vehicle more or less stay in the same spot.
 
-see the output in the simulator below 
+See the Scenario1 output in the simulator snapshot below 
 
 <p align="center">
 <img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario1.png"/>
@@ -57,7 +57,7 @@ We won't be worrying about yaw just yet.
 If successful you should now see the quad level itself (as shown below), though it’ll still be flying away slowly since we’re not controlling velocity/position!  You should also see the vehicle angle (Roll) get controlled to 0.
 
 
-see the output in the simulator below 
+See the Scenario2 output in the simulator snapshot below 
 
 <p align="center">
 <img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario2.png"/>
@@ -79,6 +79,8 @@ If successful, the quads should be going to their destination points and trackin
 
 Tips : Tune position control for settling time. Don’t try to tune yaw control too tightly, as yaw control requires a lot of control authority from a quadcopter and can really affect other degrees of freedom.  This is why you often see quadcopters with tilted motors, better yaw authority!
 
+See the Scenario3 output in the simulator snapshot below 
+
 <p align="center">
 <img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario3.png"/>
 </p>
@@ -87,52 +89,36 @@ Tips : Tune position control for settling time. Don’t try to tune yaw control 
 
 ### Non-idealities and robustness (scenario 4) ###
 
-In this part, we will explore some of the non-idealities and robustness of a controller.  For this simulation, we will use `Scenario 4`.  This is a configuration with 3 quads that are all are trying to move one meter forward.  However, this time, these quads are all a bit different:
+In this part, I explored some of the non-idealities and robustness of a controller.  For this simulation, i used `Scenario 4`.  This is a configuration with 3 quads that are all are trying to move one meter forward.  However, this time, these quads are all a bit different:
  - The green quad has its center of mass shifted back
  - The orange vehicle is an ideal quad
  - The red vehicle is heavier than usual
 
-1. Run your controller & parameter set from Step 3.  Do all the quads seem to be moving OK?  If not, try to tweak the controller parameters to work for all 3 (tip: relax the controller).
+1. Ran the controller & parameter set from Step 3.  Tweaked the controller parameters to work for all 3 (tip: relax the controller).
 
-2. Edit `AltitudeControl()` to add basic integral control to help with the different-mass vehicle.
+2. Edited `AltitudeControl()` to add basic integral control to help with the different-mass vehicle.
 
-3. Tune the integral control, and other control parameters until all the quads successfully move properly.  Your drones' motion should look like this:
+3. Tuned the integral control, and other control parameters until all the quads successfully move properly.  
+
+See the Scenario4 output in the simulator snapshot below 
 
 <p align="center">
-<img src="animations/scenario4.gif" width="500"/>
+<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario4.png"/>
 </p>
+
 
 
 ### Tracking trajectories ###
 
-Now that we have all the working parts of a controller, you will put it all together and test it's performance once again on a trajectory.  For this simulation, you will use `Scenario 5`.  This scenario has two quadcopters:
+Now that we have all the working parts of a controller, you put it all together and test it's performance once again on a trajectory.  For this simulation, i used `Scenario 5`.  This scenario has two quadcopters:
  - the orange one is following `traj/FigureEight.txt`
- - the other one is following `traj/FigureEightFF.txt` - for now this is the same trajectory.  For those interested in seeing how you might be able to improve the performance of your drone by adjusting how the trajectory is defined, check out **Extra Challenge 1** below!
-
-How well is your drone able to follow the trajectory?  It is able to hold to the path fairly well?
-
-
-### Extra Challenge 1 (Optional) ###
-
-You will notice that initially these two trajectories are the same. Let's work on improving some performance of the trajectory itself.
-
-1. Inspect the python script `traj/MakePeriodicTrajectory.py`.  Can you figure out a way to generate a trajectory that has velocity (not just position) information?
-
-2. Generate a new `FigureEightFF.txt` that has velocity terms
-Did the velocity-specified trajectory make a difference? Why?
-
-With the two different trajectories, your drones' motions should look like this:
+ - the other one is following `traj/FigureEightFF.txt` - for now this is the same trajectory.  
+ 
+ See the Scenario5 output in the simulator snapshot below 
 
 <p align="center">
-<img src="animations/scenario5.gif" width="500"/>
+<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario5.png"/>
 </p>
-
-
-### Extra Challenge 2 (Optional) ###
-
-For flying a trajectory, is there a way to provide even more information for even better tracking?
-
-How about trying to fly this trajectory as quickly as possible (but within following threshold)!
 
 
 ## Evaluation ##
