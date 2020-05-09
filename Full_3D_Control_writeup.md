@@ -28,39 +28,40 @@ I tuned the `Mass` parameter in `QuadControlParams.txt` to 0.49 so as to make th
 see the output in the simulator below 
 
 <p align="center">
-<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario1.png" width="500"/>
+<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario1.png"/>
 </p>
 
 
 
 ### Body rate and roll/pitch control (scenario 2) ###
 
-First, you will implement the body rate and roll / pitch control.  For the simulation, you will use `Scenario 2`.  In this scenario, you will see a quad above the origin.  It is created with a small initial rotation speed about its roll axis.  Your controller will need to stabilize the rotational motion and bring the vehicle back to level attitude.
+First, you implemented the body rate and roll / pitch control.  For the simulation, i used `Scenario 2`.  In this scenario, you will see a quad above the origin.  It is created with a small initial rotation speed about its roll axis.  My controller was able to stabilize the rotational motion and bring the vehicle back to level attitude.
 
-To accomplish this, you will:
+To accomplish this, i:
 
-1. Implement body rate control
+1. Implemented body rate control
 
- - implement the code in the function `GenerateMotorCommands()`
- - implement the code in the function `BodyRateControl()`
- - Tune `kpPQR` in `QuadControlParams.txt` to get the vehicle to stop spinning quickly but not overshoot
+ - implemented the function `GenerateMotorCommands()`  : lines 74 to 93 in QuadControl.cpp
+ - implemented the function `BodyRateControl()` : 123 to 128 in QuadControl.cpp
+ - Tuned `kpPQR` in `QuadControlParams.txt` : value set to [90,90, 6]  (vehicle stopped spinning quickly but not overshoot)
 
 If successful, you should see the rotation of the vehicle about roll (omega.x) get controlled to 0 while other rates remain zero.  Note that the vehicle will keep flying off quite quickly, since the angle is not yet being controlled back to 0.  Also note that some overshoot will happen due to motor dynamics!.
 
-If you come back to this step after the next step, you can try tuning just the body rate omega (without the outside angle controller) by setting `QuadControlParams.kpBank = 0`.
 
 2. Implement roll / pitch control
 We won't be worrying about yaw just yet.
 
- - implement the code in the function `RollPitchControl()`
- - Tune `kpBank` in `QuadControlParams.txt` to minimize settling time but avoid too much overshoot
+ - implemented function `RollPitchControl()` : lines 157 to 174 in QuadControl.cpp
+ - Tuned `kpBank` in `QuadControlParams.txt` : value set to 10 (minimize settling time but avoid too much overshoot)
 
 If successful you should now see the quad level itself (as shown below), though it’ll still be flying away slowly since we’re not controlling velocity/position!  You should also see the vehicle angle (Roll) get controlled to 0.
 
-<p align="center">
-<img src="animations/scenario2.gif" width="500"/>
-</p>
 
+see the output in the simulator below 
+
+<p align="center">
+<img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario2.png"/>
+</p>
 
 ### Position/velocity and yaw angle control (scenario 3) ###
 
