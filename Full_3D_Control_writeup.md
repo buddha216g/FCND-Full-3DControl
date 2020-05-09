@@ -35,7 +35,7 @@ See the Scenario1 output in the simulator snapshot below
 
 ### Body rate and roll/pitch control (scenario 2) ###
 
-First, you implemented the body rate and roll / pitch control.  For the simulation, i used `Scenario 2`.  In this scenario, you will see a quad above the origin.  It is created with a small initial rotation speed about its roll axis.  My controller was able to stabilize the rotational motion and bring the vehicle back to level attitude.
+First, i implemented the body rate and roll / pitch control.  For the simulation, i used `Scenario 2`.  In this scenario, the quad wil be above the origin.  It is created with a small initial rotation speed about its roll axis.  My controller was able to stabilize the rotational motion and bring the vehicle back to level attitude.
 
 To accomplish this, i:
 
@@ -45,16 +45,15 @@ To accomplish this, i:
  - implemented the function `BodyRateControl()` : 123 to 128 in QuadControl.cpp (student code part)
  - Tuned `kpPQR` in `QuadControlParams.txt` : value set to [90,90, 6]  (vehicle stopped spinning quickly but not overshoot)
 
-If successful, you should see the rotation of the vehicle about roll (omega.x) get controlled to 0 while other rates remain zero.  Note that the vehicle will keep flying off quite quickly, since the angle is not yet being controlled back to 0.  Also note that some overshoot will happen due to motor dynamics!.
+After implementation the rotation of the vehicle about roll (omega.x) got controlled to 0 while other rates remained zero.  Note that the vehicle will keep flying off quite quickly, since the angle is not yet being controlled back to 0.  Also note that some overshoot will happen due to motor dynamics!.
 
 
 2. Implement roll / pitch control
-We won't be worrying about yaw just yet.
 
- - implemented function `RollPitchControl()` : lines 157 to 174 in QuadControl.cpp (student code part)
- - Tuned `kpBank` in `QuadControlParams.txt` : value set to 10 (minimize settling time but avoid too much overshoot)
+ - I implemented function `RollPitchControl()` : lines 157 to 174 in QuadControl.cpp (student code part)
+ - I Tuned `kpBank` in `QuadControlParams.txt` : value set to 10 (minimize settling time but avoid too much overshoot)
 
-If successful you should now see the quad level itself (as shown below), though it’ll still be flying away slowly since we’re not controlling velocity/position!  You should also see the vehicle angle (Roll) get controlled to 0.
+The quad now levelled itself , though it’ll still be flying away slowly since i am not controlling velocity/position!  The vehicle angle (Roll) however, gets controlled to 0.
 
 
 See the Scenario2 output in the simulator snapshot below 
@@ -72,12 +71,16 @@ Next, I implemented the position, altitude and yaw control for your quad.  For t
  - tuned parameters `kpPosZ` and `kpPosZ` :  kpPosZ = 25 and KiPosZ = 40
  - tuned parameters `kpVelXY` and `kpVelZ` : kpVelXY = 12.0 and kpVelZ = 9.0
 
-If successful, the quads should be going to their destination points and tracking error should be going down (as shown below). However, one quad remains rotated in yaw.
+The quads are now oing to their destination points and tracking error is going down (as shown below). However, one quad remains rotated in yaw.
+
+Tips : Tune position control for settling time. Don’t try to tune yaw control too tightly, as yaw control requires a lot of control authority from a quadcopter and can really affect other degrees of freedom.  This is why you often see quadcopters with tilted motors, better yaw authority!
+
+**Hint:**  For a second order system, such as the one for this quadcopter, the velocity gain (`kpVelXY` and `kpVelZ`) should be at least ~3-4 times greater than the respective position gain (`kpPosXY` and `kpPosZ`).
 
  - implemented the function `YawControl()` : lines 307 to 321 in QuadControl.cpp (student code part)
  - tuned parameters `kpYaw` and the 3rd (z) component of `kpPQR` : kpYaw = 2 and kpPQR = 90,90, 6
 
-Tips : Tune position control for settling time. Don’t try to tune yaw control too tightly, as yaw control requires a lot of control authority from a quadcopter and can really affect other degrees of freedom.  This is why you often see quadcopters with tilted motors, better yaw authority!
+
 
 See the Scenario3 output in the simulator snapshot below 
 
@@ -85,7 +88,7 @@ See the Scenario3 output in the simulator snapshot below
 <img src="https://github.com/buddha216g/FCND-Full-3DControl/blob/master/Simulator_Outputs/Scenario3.png"/>
 </p>
 
-**Hint:**  For a second order system, such as the one for this quadcopter, the velocity gain (`kpVelXY` and `kpVelZ`) should be at least ~3-4 times greater than the respective position gain (`kpPosXY` and `kpPosZ`).
+
 
 ### Non-idealities and robustness (scenario 4) ###
 
@@ -123,17 +126,15 @@ Now that we have all the working parts of a controller, you put it all together 
 
 ## Evaluation ##
 
-To assist with tuning of your controller, the simulator contains real time performance evaluation.  We have defined a set of performance metrics for each of the scenarios that your controllers must meet for a successful submission.
+For All 5 scenarios, 
 
-There are two ways to view the output of the evaluation:
-
- - in the command line, at the end of each simulation loop, a **PASS** or a **FAIL** for each metric being evaluated in that simulation
- - on the plots, once your quad meets the metrics, you will see a green box appear on the plot notifying you of a **PASS**
+ - in the command line, at the end of each simulation loop, a **PASS** for each metric was displayed
+ - on the plots, green box appeared on the plot notifying me of a **PASS**
 
 
 ### Performance Metrics ###
 
-The specific performance metrics are as follows:
+All 5 scenarios performed as per specifications outlined below:
 
  - scenario 2
    - roll should less than 0.025 radian of nominal for 0.75 seconds (3/4 of the duration of the loop)
@@ -149,7 +150,3 @@ The specific performance metrics are as follows:
 
  - scenario 5
    - position error of the quad should be less than 0.25 meters for at least 3 seconds
-
-## Authors ##
-
-Thanks to Fotokite for the initial development of the project code and simulator.
